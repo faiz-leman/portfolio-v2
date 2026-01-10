@@ -856,6 +856,66 @@ footer p {
   background-color: rgba(0, 0, 0, 0.85);
 }
 
+/* Password Modal Styling */
+#passwordModal .modal-content {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+#passwordModal .modal-title {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+#passwordModal .form-control {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+#passwordModal .form-control:focus {
+  background-color: var(--bg-secondary);
+  border-color: var(--accent-color);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+  outline: none;
+}
+
+#passwordModal .form-control::placeholder {
+  color: var(--text-muted);
+}
+
+#passwordError {
+  font-size: 0.875rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+#passwordError.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+#passwordError.success {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+#showHint {
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+}
+
+#showHint:hover {
+  color: var(--accent-color) !important;
+}
+
 /* Responsive Grid */
 @media (max-width: 768px) {
   .project-images-grid {
