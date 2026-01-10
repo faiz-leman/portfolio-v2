@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a single-page portfolio website built with **Tailwind CSS** using a utility-first approach. All styling is done through Tailwind classes with minimal custom CSS.
+This is a single-page portfolio website built with **Bootstrap CSS** using a utility-first approach. All styling is done through Bootstrap classes with minimal custom CSS.
 
 ## Architecture & Tech Stack
 
@@ -17,7 +17,7 @@ assets/
 
 **Key Dependencies (loaded via CDN):**
 
-- Tailwind CSS (via CDN for development - shows console warning, intentional)
+- Bootstrap CSS (via CDN for development - shows console warning, intentional)
 - Font Awesome 6.4.0 (icons)
 - Google Fonts (Poppins)
 
@@ -25,7 +25,7 @@ assets/
 
 ### 1. Styling Approach
 
-**DO:** Use Tailwind utility classes for all new components
+**DO:** Use Bootstrap utility classes for all new components
 
 ```html
 <!-- Example from services section -->
@@ -43,7 +43,7 @@ assets/
 
 ### 2. Custom Color Tokens
 
-Defined in `index.html` Tailwind config (lines 10-24):
+Defined in `index.html` Bootstrap config (lines 10-24):
 
 - `bg-primary-bg` → `#0f172a` (dark slate)
 - `bg-secondary-bg` → `#1e293b` (lighter slate)
@@ -54,7 +54,7 @@ Use these instead of arbitrary color values.
 
 ### 3. Mobile Menu Pattern
 
-Uses Tailwind's responsive utilities with JavaScript toggle:
+Uses Bootstrap's responsive utilities with JavaScript toggle:
 
 ```html
 <ul class="nav-links hidden md:flex">
@@ -105,9 +105,9 @@ Use `md:grid-cols-[1.2fr_1fr]` for asymmetric layouts (see hero section).
 
 ## Known Quirks & Constraints
 
-1. **Tailwind CDN Warning**: Console shows "should not be used in production" - this is expected for development. For production deployment, install via npm/PostCSS.
+1. **Bootstrap CDN Warning**: Console shows "should not be used in production" - this is expected for development. For production deployment, install via npm/PostCSS.
 
-2. **Animation Classes**: `.animate-float` and `.animate-float-delayed` are the ONLY custom classes used. Everything else is Tailwind utilities.
+2. **Animation Classes**: `.animate-float` and `.animate-float-delayed` are the ONLY custom classes used. Everything else is Bootstrap utilities.
 
 3. **No Build Process**: This is a static site served from XAMPP (`c:\xampp\htdocs\portfolio-v2`). No bundler, no package.json, no build commands.
 
