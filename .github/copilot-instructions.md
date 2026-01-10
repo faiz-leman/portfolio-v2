@@ -118,3 +118,11 @@ Use `md:grid-cols-[1.2fr_1fr]` for asymmetric layouts (see hero section).
 - [ ] Hero text fades in on page load
 - [ ] Hover effects work on service cards and project cards
 - [ ] Responsive layout works at 768px and 1024px breakpoints
+
+## Git Commit Message Guidelines
+
+- Use present tense: "Add", "Fix", "Update"
+- Reference issues when applicable: "Fixes #123"
+- Keep messages concise but descriptive
+
+---
