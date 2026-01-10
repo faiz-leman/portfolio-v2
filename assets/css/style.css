@@ -663,3 +663,137 @@ footer p {
     height: 300px;
   }
 }
+
+/* Modal Styling */
+.modal-content {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+}
+
+.modal-title {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  color: var(--text-secondary);
+}
+
+/* Image Grid Layout */
+.project-images-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.project-image-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--bg-color);
+}
+
+.project-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.project-screenshot:hover {
+  transform: scale(1.05);
+}
+
+/* Skeleton Loader */
+.skeleton-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--bg-color) 25%,
+    rgba(56, 189, 248, 0.1) 50%,
+    var(--bg-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.modal-body h6 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.modal-body ul {
+  color: var(--text-secondary);
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+}
+
+.modal-footer .btn-secondary {
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.modal-footer .btn-primary {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  border: none;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+  .project-images-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .project-images-grid {
+    grid-template-columns: 1fr;
+  }
+}
