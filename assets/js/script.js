@@ -118,8 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const passwordForm = document.getElementById("passwordForm");
   const passwordInput = document.getElementById("portfolioPassword");
   const passwordError = document.getElementById("passwordError");
-  const showHintBtn = document.getElementById("showHint");
-  const passwordHint = document.getElementById("passwordHint");
 
   // Auto-focus password input when modal opens
   document
@@ -127,18 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("shown.bs.modal", function () {
       passwordInput.focus();
     });
-
-  // Show hint button
-  showHintBtn.addEventListener("click", function () {
-    if (passwordHint.style.display === "none") {
-      passwordHint.style.display = "block";
-      showHintBtn.innerHTML = '<i class="fas fa-eye-slash"></i> Hide hint';
-    } else {
-      passwordHint.style.display = "none";
-      showHintBtn.innerHTML =
-        '<i class="fas fa-question-circle"></i> Show hint';
-    }
-  });
 
   // Password form submission
   passwordForm.addEventListener("submit", function (e) {
@@ -172,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Show success message
       passwordInput.style.borderColor = "#10b981";
       passwordError.innerHTML =
-        '<i class="fas fa-check-circle"></i> Access granted! Opening case study...';
+        '<i class="fas fa-check-circle"></i> Access granted! Opening demo...';
       passwordError.className = "mt-2 success";
       passwordError.style.display = "block";
 
@@ -181,13 +167,14 @@ document.addEventListener("DOMContentLoaded", () => {
         passwordInput.value = "";
         passwordInput.style.borderColor = "";
         passwordError.style.display = "none";
-        passwordHint.style.display = "none";
-        showHintBtn.innerHTML =
-          '<i class="fas fa-question-circle"></i> Show hint';
 
-        // Show the case study modal for the pending project
+        // Open the project URL for the pending project
         if (pendingProjectCard) {
-          showCaseStudyModal(pendingProjectCard);
+          const projectUrl =
+            pendingProjectCard.getAttribute("data-project-url");
+          if (projectUrl && projectUrl !== "#") {
+            window.open(projectUrl, "_blank");
+          }
           pendingProjectCard = null;
         }
       }, 800);
@@ -221,9 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
       passwordInput.value = "";
       passwordError.style.display = "none";
       passwordInput.style.borderColor = "";
-      passwordHint.style.display = "none";
-      showHintBtn.innerHTML =
-        '<i class="fas fa-question-circle"></i> Show hint';
     });
 
   // ========================================
@@ -238,16 +222,8 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const projectCard = this.closest(".project-card");
-      const projectTitle = projectCard.getAttribute("data-project-title");
 
-      // Check if this specific project is authenticated
-      if (!isProjectAuthenticated(projectTitle)) {
-        pendingProjectCard = projectCard;
-        passwordModal.show();
-        return;
-      }
-
-      // User is authenticated for this project, show case study
+      // Show case study modal immediately (no password required)
       showCaseStudyModal(projectCard);
     });
   });
@@ -317,10 +293,50 @@ document.addEventListener("DOMContentLoaded", () => {
       featuresList.appendChild(featureLi);
     });
 
-    // Update project link
-    document
-      .getElementById("modalProjectLink")
-      .setAttribute("href", projectUrl);
+    // Update project link button - require password for viewing demo
+    const viewProjectBtn = document.getElementById("modalProjectLink");
+    viewProjectBtn.setAttribute("data-project-url", projectUrl);
+
+    // Remove existing click listeners
+    const newViewProjectBtn = viewProjectBtn.cloneNode(true);
+    viewProjectBtn.parentNode.replaceChild(newViewProjectBtn, viewProjectBtn);
+
+    // Add click event to check password before accessing demo
+    newViewProjectBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      // Check if this specific project is authenticated
+      if (!isProjectAuthenticated(title)) {
+        pendingProjectCard = projectCard;
+
+        // Dismiss case study modal first for cleaner UX
+        const caseStudyModalInstance =
+          bootstrap.Modal.getInstance(caseStudyModal);
+        if (caseStudyModalInstance) {
+          caseStudyModalInstance.hide();
+
+          // Show password modal after case study modal is hidden
+          caseStudyModal.addEventListener(
+            "hidden.bs.modal",
+            function showPasswordOnce() {
+              passwordModal.show();
+              caseStudyModal.removeEventListener(
+                "hidden.bs.modal",
+                showPasswordOnce
+              );
+            }
+          );
+        } else {
+          passwordModal.show();
+        }
+      } else {
+        // User is authenticated, open the project URL
+        const url = this.getAttribute("data-project-url");
+        if (url && url !== "#") {
+          window.open(url, "_blank");
+        }
+      }
+    });
 
     // Show the modal
     const modal = new bootstrap.Modal(caseStudyModal);
