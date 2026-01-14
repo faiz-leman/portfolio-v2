@@ -1,14 +1,14 @@
 :root {
-  --bg-color: #000000;
-  --bg-secondary: #0a0a0a;
-  --bg-card: #111111;
-  --text-primary: #ededed;
-  --text-secondary: #a1a1a1;
-  --text-muted: #737373;
-  --accent-color: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-light: #60a5fa;
-  --border-color: rgba(255, 255, 255, 0.08);
+  --bg-color: #f5fbe6;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #215e61;
+  --text-secondary: #2c7a7d;
+  --text-muted: #5a9397;
+  --accent-color: #fe7f2d;
+  --accent-hover: #e66d1f;
+  --accent-light: #215e61;
+  --border-color: rgba(33, 94, 97, 0.15);
   --font-family: "Poppins", sans-serif;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -34,7 +34,7 @@ body {
   max-width: 100vw;
   background-image: radial-gradient(
     circle at 50% 0%,
-    rgba(59, 130, 246, 0.05) 0%,
+    rgba(254, 127, 45, 0.08) 0%,
     transparent 50%
   );
 }
@@ -51,12 +51,13 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(245, 251, 230, 0.95);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   z-index: 1000;
   padding: 1.5rem 0;
   border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 10px rgba(33, 94, 97, 0.05);
 }
 
 .navbar .container {
@@ -104,7 +105,7 @@ body {
 
 .nav-links .btn-primary:hover {
   background-color: var(--accent-hover);
-  color: white;
+  color: #ffffff;
 }
 
 .hamburger {
@@ -127,7 +128,7 @@ body {
 
 .mobile-contact-btn:hover {
   background-color: var(--accent-hover);
-  color: white;
+  color: #ffffff;
 }
 
 /* Hero Section */
@@ -150,7 +151,7 @@ body {
   height: 1000px;
   background: radial-gradient(
     circle,
-    rgba(59, 130, 246, 0.06) 0%,
+    rgba(254, 127, 45, 0.1) 0%,
     transparent 70%
   );
   z-index: -1;
@@ -172,10 +173,10 @@ body {
   font-weight: 600;
   margin-bottom: 1rem;
   letter-spacing: 1px;
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(33, 94, 97, 0.1);
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(33, 94, 97, 0.2);
 }
 
 .hero-text h1 {
@@ -188,14 +189,7 @@ body {
 }
 
 .highlight {
-  background: linear-gradient(
-    to right,
-    var(--accent-color),
-    var(--accent-light)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent-color);
 }
 
 .hero-text p {
@@ -245,8 +239,8 @@ body {
 
 .btn-secondary:hover {
   border-color: var(--accent-color);
-  background-color: rgba(59, 130, 246, 0.1);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  background-color: rgba(254, 127, 45, 0.1);
+  box-shadow: 0 0 20px rgba(254, 127, 45, 0.2);
 }
 
 .tech-stack {
@@ -297,19 +291,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px dashed rgba(59, 130, 246, 0.2);
+  border: 2px dashed rgba(254, 127, 45, 0.3);
   position: relative;
 }
 
 .profile-placeholder i {
   font-size: 8rem;
-  color: rgba(59, 130, 246, 0.15);
+  color: rgba(254, 127, 45, 0.2);
 }
 
 /* Floating Badges */
 .badge {
   position: absolute;
-  background: rgba(17, 17, 17, 0.95);
+  background: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   padding: 0.8rem 1.2rem;
@@ -317,7 +311,8 @@ body {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.05);
+  box-shadow: 0 10px 30px rgba(33, 94, 97, 0.15),
+    0 0 20px rgba(254, 127, 45, 0.1);
   border: 1px solid var(--border-color);
   animation: float 6s ease-in-out infinite;
 }
@@ -411,8 +406,9 @@ body {
 
 .service-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.1);
+  border-color: rgba(254, 127, 45, 0.4);
+  box-shadow: 0 15px 40px rgba(33, 94, 97, 0.1),
+    0 0 30px rgba(254, 127, 45, 0.15);
   background-color: var(--bg-secondary);
 }
 
@@ -430,7 +426,7 @@ body {
   height: 100%;
   background: radial-gradient(
     circle at top right,
-    rgba(56, 189, 248, 0.1),
+    rgba(254, 127, 45, 0.08),
     transparent 60%
   );
   opacity: 0;
@@ -444,7 +440,7 @@ body {
 .service-card .icon {
   width: 60px;
   height: 60px;
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(254, 127, 45, 0.1);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -453,14 +449,14 @@ body {
   color: var(--accent-color);
   font-size: 1.8rem;
   transition: var(--transition);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(254, 127, 45, 0.2);
 }
 
 .service-card:hover .icon {
   background: var(--accent-color);
-  color: #000;
+  color: #ffffff;
   border-color: var(--accent-color);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 30px rgba(254, 127, 45, 0.4);
 }
 
 .service-card h3 {
@@ -496,8 +492,9 @@ body {
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.05);
-  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 15px 40px rgba(33, 94, 97, 0.1),
+    0 0 30px rgba(254, 127, 45, 0.1);
+  border-color: rgba(254, 127, 45, 0.4);
 }
 
 .project-image {
@@ -517,7 +514,7 @@ body {
 
 .project-placeholder-img i {
   font-size: 3rem;
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(33, 94, 97, 0.2);
 }
 
 .project-card:hover .project-placeholder-img {
@@ -537,12 +534,12 @@ body {
 
 .project-tags span {
   font-size: 0.75rem;
-  background: rgba(59, 130, 246, 0.1);
-  color: var(--accent-light);
+  background: rgba(254, 127, 45, 0.1);
+  color: var(--accent-color);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-weight: 500;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(254, 127, 45, 0.25);
 }
 
 .project-card h3 {
@@ -618,8 +615,8 @@ body {
 }
 
 .contact-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(33, 94, 97, 0.03);
+  border: 1px solid rgba(33, 94, 97, 0.1);
   padding: 1.5rem 2rem;
   border-radius: 12px;
   display: flex;
@@ -631,15 +628,16 @@ body {
 }
 
 .contact-card:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(33, 94, 97, 0.05);
   transform: translateY(-5px);
-  border-color: rgba(56, 189, 248, 0.3);
+  border-color: rgba(254, 127, 45, 0.4);
+  box-shadow: 0 10px 30px rgba(33, 94, 97, 0.1);
 }
 
 .contact-card .icon-box {
   width: 50px;
   height: 50px;
-  background: rgba(56, 189, 248, 0.1);
+  background: rgba(254, 127, 45, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -827,7 +825,7 @@ footer p {
   background: linear-gradient(
     90deg,
     var(--bg-secondary) 25%,
-    rgba(59, 130, 246, 0.08) 50%,
+    rgba(254, 127, 45, 0.1) 50%,
     var(--bg-secondary) 75%
   );
   background-size: 200% 100%;
@@ -866,25 +864,25 @@ footer p {
 }
 
 .modal-footer .btn-secondary:hover {
-  background-color: rgba(59, 130, 246, 0.1);
+  background-color: rgba(254, 127, 45, 0.1);
   color: var(--text-primary);
   border-color: var(--accent-color);
 }
 
 .modal-footer .btn-primary {
   background-color: var(--accent-color);
-  color: #000;
+  color: #ffffff;
   border: none;
   font-weight: 600;
 }
 
 .modal-footer .btn-primary:hover {
   background-color: var(--accent-hover);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 30px rgba(254, 127, 45, 0.4);
 }
 
 .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(33, 94, 97, 0.3);
 }
 
 /* Password Modal Styling */
@@ -912,7 +910,7 @@ footer p {
   background-color: var(--bg-secondary);
   border-color: var(--accent-color);
   color: var(--text-primary);
-  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(254, 127, 45, 0.25);
   outline: none;
 }
 
@@ -945,6 +943,18 @@ footer p {
 
 #showHint:hover {
   color: var(--accent-color) !important;
+}
+
+/* Button close for light mode */
+.btn-close,
+.btn-close-white {
+  filter: invert(0);
+  opacity: 0.6;
+}
+
+.btn-close:hover,
+.btn-close-white:hover {
+  opacity: 1;
 }
 
 /* Responsive Grid */
