@@ -67,30 +67,54 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ========================================
-  // SMOOTH SCROLLING
+
+  // LENIS SMOOTH SCROLLING
   // ========================================
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href");
-
-      if (href === "#" || this.hasAttribute("data-bs-toggle")) {
-        return;
-      }
-
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-        });
-        if (window.innerWidth < 768) {
-          navLinks.classList.add("hidden");
-          navLinks.classList.remove("flex");
-        }
-      }
+  if (typeof Lenis === "undefined") {
+    console.error("Lenis is not defined! Check if the CDN loaded correctly.");
+    console.log("window object:", window);
+  } else {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
     });
-  });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Anchor link scrolling with Lenis
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+
+        if (href === "#" || this.hasAttribute("data-bs-toggle")) {
+          return;
+        }
+
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          lenis.scrollTo(target, {
+            offset: -80,
+            duration: 1.2,
+          });
+          if (window.innerWidth < 768) {
+            navLinks.classList.add("hidden");
+            navLinks.classList.remove("flex");
+          }
+        }
+      });
+    });
+  }
 
   // ========================================
   // HERO ANIMATION
@@ -113,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ========================================
 
   const passwordModal = new bootstrap.Modal(
-    document.getElementById("passwordModal")
+    document.getElementById("passwordModal"),
   );
   const passwordForm = document.getElementById("passwordForm");
   const passwordInput = document.getElementById("portfolioPassword");
@@ -134,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lockoutEnd = sessionStorage.getItem("lockoutEnd");
     if (lockoutEnd && Date.now() < parseInt(lockoutEnd)) {
       const remainingTime = Math.ceil(
-        (parseInt(lockoutEnd) - Date.now()) / 60000
+        (parseInt(lockoutEnd) - Date.now()) / 60000,
       );
       passwordError.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Too many attempts. Try again in ${remainingTime} minute(s).`;
       passwordError.className = "mt-2 error";
@@ -145,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const enteredPassword = passwordInput.value;
     const projectPassword = pendingProjectCard.getAttribute(
-      "data-project-password"
+      "data-project-password",
     );
     const projectTitle = pendingProjectCard.getAttribute("data-project-title");
 
@@ -233,14 +257,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = projectCard.getAttribute("data-project-title");
     const description = projectCard.getAttribute("data-project-description");
     const technologies = JSON.parse(
-      projectCard.getAttribute("data-project-tech")
+      projectCard.getAttribute("data-project-tech"),
     );
     const features = JSON.parse(
-      projectCard.getAttribute("data-project-features")
+      projectCard.getAttribute("data-project-features"),
     );
     const projectUrl = projectCard.getAttribute("data-project-url");
     const projectImages = JSON.parse(
-      projectCard.getAttribute("data-project-images")
+      projectCard.getAttribute("data-project-images"),
     );
 
     // Populate modal content
@@ -322,9 +346,9 @@ document.addEventListener("DOMContentLoaded", () => {
               passwordModal.show();
               caseStudyModal.removeEventListener(
                 "hidden.bs.modal",
-                showPasswordOnce
+                showPasswordOnce,
               );
-            }
+            },
           );
         } else {
           passwordModal.show();
